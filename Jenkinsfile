@@ -3,19 +3,9 @@ pipeline {
       docker { image 'dnscontrol/v1:latest' }
   }
     stages {
-        stage('Say Hi') {
+        stage('DNS Control Preview') {
             steps {
-                echo 'Hello World..'
-            }
-        }
-        stage('Preview') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Configure') {
-            steps {
-                echo 'Deploying....'
+                sh 'docker run --rm -it -v ~/repositories/dnscontrol-conf/dnsconfig.js:/dns/dnsconfig.js -v ~/repositories/dnscontrol-conf/creds.json:/dns/creds.json stackexchange/dnscontrol dnscontrol preview'
             }
         }
     }
