@@ -1,6 +1,7 @@
 podTemplate(label: 'mypod', containers: [
-    containerTemplate(name: 'kubectl', image: 'smesch/kubectl', ttyEnabled: true, command: 'cat',
-    volumes: [configMapVolume(mountPath: '/dns', configMapName: 'dnscontrol-creds')
+    containerTemplate(name: 'kubectl', image: 'smesch/kubectl', ttyEnabled: true, command: 'cat')],
+       volumes: [
+        configMapVolume(mountPath: '/dns', configMapName: 'dnscontrol-creds'),
   ]) {
     node('mypod') {
         stage('DNSControl Preview') {
